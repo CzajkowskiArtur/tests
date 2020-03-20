@@ -1,0 +1,30 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+
+
+    <changeSet id="addQuestion" author="artur.czajkowski" dbms="h2">
+        <insert tableName="QUESTION">
+            <column name="TEXT">JAVA TO</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="addAnswer" author="artur.czajkowski" dbms="h2">
+        <insert tableName="ANSWER">
+            <column name="TEXT">Język programowania</column>
+            <column name="QUESTION_ID">1</column>
+        </insert>
+        <insert tableName="ANSWER">
+            <column name="TEXT">JVM</column>
+            <column name="QUESTION_ID">1</column>
+        </insert>
+        <insert tableName="ANSWER">
+            <column name="TEXT">LUBIE PLACKI</column>
+            <column name="QUESTION_ID">1</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

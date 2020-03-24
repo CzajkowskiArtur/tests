@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,10 +24,10 @@ public class Question extends BaseModel {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Answer> answers;
-//
-//    @OneToOne
-//    @JsonIgnore
-//    private Answer correctAnswer;
+
+    @ManyToOne
+    @JsonIgnore
+    private Quiz quiz;
 
     public List<Answer> getAnswers() {
         return answers;

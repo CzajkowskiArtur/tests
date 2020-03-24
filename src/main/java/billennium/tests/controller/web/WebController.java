@@ -17,8 +17,8 @@ public class WebController {
 
     @RequestMapping(value = "/quiz/play", method = RequestMethod.GET)
     public String playQuiz(Model model) {
-        List<QuizModel> question = quizService.findTest();
-        model.addAttribute("question", question);
+        QuizModel quiz = quizService.findQuiz();
+        model.addAttribute("quiz", quiz);
         return "playQuiz";
     }
 }

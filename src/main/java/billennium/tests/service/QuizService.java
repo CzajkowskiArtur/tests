@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface QuizService {
 
-    List<QuizModel> findTest();
+    QuizModel findQuiz();
+
 }

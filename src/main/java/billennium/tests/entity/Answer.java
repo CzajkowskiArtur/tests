@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Calendar;
 
 @Entity
 @Table(name = "answer")
@@ -22,13 +21,6 @@ public class Answer extends BaseModel{
     @ManyToOne
     @JsonIgnore
     private Question question;
-
-//    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
-//    private Calendar createdDate;
-
-//    public Calendar getCreatedDate() {
-//        return createdDate;
-//    }
 
     public String getText() {
         return text;

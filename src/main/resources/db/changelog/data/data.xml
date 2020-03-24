@@ -6,10 +6,24 @@
       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
 
 
+    <changeSet id="addQuiz" author="artur.czajkowski" dbms="h2">
+        <insert tableName="Quiz">
+            <column name="id">1</column>
+        </insert>
+    </changeSet>
+
+
     <changeSet id="addQuestion" author="artur.czajkowski" dbms="h2">
         <insert tableName="QUESTION">
             <column name="TEXT">JAVA TO</column>
+                <column name="quiz_id">1</column>
         </insert>
+
+        <insert tableName="QUESTION">
+            <column name="TEXT">JVM TO</column>
+            <column name="quiz_id">1</column>
+        </insert>
+
     </changeSet>
 
     <changeSet id="addAnswer" author="artur.czajkowski" dbms="h2">
@@ -22,8 +36,21 @@
             <column name="QUESTION_ID">1</column>
         </insert>
         <insert tableName="ANSWER">
-            <column name="TEXT">LUBIE PLACKI</column>
+            <column name="TEXT">PASCAL</column>
             <column name="QUESTION_ID">1</column>
+        </insert>
+
+        <insert tableName="ANSWER">
+            <column name="TEXT">JRE</column>
+            <column name="QUESTION_ID">2</column>
+        </insert>
+        <insert tableName="ANSWER">
+            <column name="TEXT">JDK</column>
+            <column name="QUESTION_ID">2</column>
+        </insert>
+        <insert tableName="ANSWER">
+            <column name="TEXT">JAVA VIRTUAL MACHINE</column>
+            <column name="QUESTION_ID">2</column>
         </insert>
     </changeSet>
 

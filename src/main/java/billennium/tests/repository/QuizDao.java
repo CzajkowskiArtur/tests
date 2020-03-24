@@ -1,8 +1,9 @@
 package billennium.tests.repository;
 
-import billennium.tests.entity.Question;
-import billennium.tests.mapper.QuestionMapper;
+import billennium.tests.entity.Quiz;
+import billennium.tests.mapper.QuizMapper;
 import billennium.tests.model.QuizModel;
+import billennium.tests.repository.quiz.QuizRepository;
 import billennium.tests.service.QuizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,12 @@ import java.util.List;
 public class QuizDao implements QuizService {
 
     private final QuizRepository quizRepository;
-    private final QuestionMapper questionMapper;
+    private final QuizMapper quizMapper;
 
     @Override
-    public List<QuizModel> findTest() {
-        List<Question> allQuestionModel = quizRepository.findAll();
-        return questionMapper.map(allQuestionModel);
+    public QuizModel findQuiz() {
+        List<Quiz> allQuestionModel = quizRepository.findAll();
+        return quizMapper.map(allQuestionModel);
     }
-
 
 }

@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.persistence.Table;
 import java.util.List;
 
 
@@ -29,6 +30,10 @@ public class Question extends BaseModel {
     @JsonIgnore
     private Quiz quiz;
 
+    @Column(name = "correct_answer")
+    private String correctAnswer;
+
+
     public List<Answer> getAnswers() {
         return answers;
     }
@@ -45,4 +50,19 @@ public class Question extends BaseModel {
         this.text = text;
     }
 
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
 }

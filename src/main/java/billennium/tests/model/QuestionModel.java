@@ -1,7 +1,6 @@
 package billennium.tests.model;
 
 import lombok.Builder;
-import lombok.NonNull;
 import lombok.Value;
 
 import java.util.List;
@@ -10,14 +9,9 @@ import java.util.List;
 @Value
 public class QuestionModel {
 
+    private Long id;
     private String text;
     private List<String> possibleAnswers;
+    private String correctAnswers;
 
-    @Override
-    public String toString() {
-        return "QuestionModel{" +
-                "text='" + text + '\'' +
-                ", possibleAnswers=" + possibleAnswers +
-                '}';
-    }
 }

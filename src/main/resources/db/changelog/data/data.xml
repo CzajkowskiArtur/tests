@@ -16,12 +16,14 @@
     <changeSet id="addQuestion" author="artur.czajkowski" dbms="h2">
         <insert tableName="QUESTION">
             <column name="TEXT">JAVA TO</column>
-                <column name="quiz_id">1</column>
+            <column name="quiz_id">1</column>
+            <column name="correct_answer">Język programowania</column>
         </insert>
 
         <insert tableName="QUESTION">
             <column name="TEXT">JVM TO</column>
             <column name="quiz_id">1</column>
+            <column name="correct_answer">JAVA VIRTUAL MACHINE</column>
         </insert>
 
     </changeSet>

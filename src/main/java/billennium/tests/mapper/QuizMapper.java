@@ -6,7 +6,6 @@ import billennium.tests.entity.Question;
 import billennium.tests.entity.Quiz;
 import billennium.tests.model.QuestionModel;
 import billennium.tests.model.QuizModel;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,20 +20,19 @@ public class QuizMapper {
                 .map(this::mapToQuestion)
                 .findAny()
                 .get();
-//        return quiz.stream()
-//                .map(this::mapToQuestion)
-//                .collect(Collectors.toList());
     }
 
-    QuizModel mapToQuestion(Quiz quiz) {
+    public QuizModel mapToQuestion(Quiz quiz) {
 
         List<QuestionModel> list = new ArrayList<>();
         List<Question> questions = quiz.getQuestions();
 
-       questions.stream().forEach( question ->
+       questions.forEach(question ->
             list.add(QuestionModel.builder()
+                    .id(question.getId())
                     .text(question.getText())
                     .possibleAnswers(question.getAnswers().stream().map(Answer::getText).collect(Collectors.toList()))
+                    .correctAnswers(question.getCorrectAnswer())
                     .build())
             );
 

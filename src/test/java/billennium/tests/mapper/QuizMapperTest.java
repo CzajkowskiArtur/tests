@@ -1,6 +1,5 @@
 package billennium.tests.mapper;
 
-
 import billennium.tests.JpaRepositoryIT;
 import billennium.tests.entity.Quiz;
 import billennium.tests.model.QuizModel;

@@ -1,17 +1,11 @@
 package billennium.tests.controller.web.rest;
 
-import billennium.tests.entity.Answer;
 import billennium.tests.entity.Question;
-import billennium.tests.entity.Quiz;
 import billennium.tests.model.QuizModel;
+import billennium.tests.repository.ResultModel;
 import billennium.tests.service.QuestionService;
 import billennium.tests.service.QuizService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,18 +42,18 @@ public class QuizController {
     @RequestMapping(value = "/{question_id}/answers", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<String> findAnswers(@PathVariable Long question_id) {
-        Question question = questionService.findQuestion(question_id);
+        Long l = question_id + 1;
+        Question question = questionService.findQuestion(l);
         return questionService.getListAnswers(question.getId());
     }
 
-//    @RequestMapping(value = "/{quiz_id}/submitAnswers", method = RequestMethod.POST)
-//    @ResponseStatus(HttpStatus.OK)
-//    public void playQuiz(@PathVariable long quiz_id, @RequestBody List<Response> answersBundle) {
-//        QuizModel quiz = quizService.findQuiz();
-//
-//    }
+    @RequestMapping(value = "/{quiz_id}/submitAnswers", method = RequestMethod.POST, produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public void playQuiz(@PathVariable long quiz_id, @RequestBody List<Response> answersBundle) {
+        QuizModel quiz = quizService.findQuizById(quiz_id);
+        ResultModel resultModel = quizService.checkAnswers(quiz, answersBundle);
+        quizService.saveResult(resultModel);
 
-
-
+    }
 
 }

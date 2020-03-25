@@ -1,6 +1,5 @@
 package billennium.tests.repository;
 
-import billennium.tests.entity.Answer;
 import billennium.tests.entity.Question;
 import billennium.tests.entity.Quiz;
 import billennium.tests.exception.QuizException;
@@ -12,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

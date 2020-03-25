@@ -13,7 +13,15 @@
     </createTable>
     </changeSet>
 
-
+    <changeSet id="addTableResult" author="artur.czajkowski">
+        <createTable tableName="result">
+            <column name="id" type="LONG" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="total_question" type="int"/>
+            <column name="sum_of_correct_answers" type="int"/>
+        </createTable>
+    </changeSet>
 
     <changeSet id="addTableQuestionAndAnswer" author="artur.czajkowski">
         <createTable tableName="question">
@@ -21,6 +29,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="TEXT" type="VARCHAR(512)"/>
+            <column name="CORRECT_ANSWER" type="VARCHAR(512)"/>
             <column name="quiz_id" type="LONG">
                 <constraints nullable="true" />
             </column>

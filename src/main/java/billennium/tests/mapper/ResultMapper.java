@@ -1,6 +1,7 @@
-package billennium.tests.repository;
+package billennium.tests.mapper;
 
 import billennium.tests.entity.Result;
+import billennium.tests.model.ResultModel;
 import org.springframework.stereotype.Component;
 
 @Component

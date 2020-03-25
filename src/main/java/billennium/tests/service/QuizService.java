@@ -1,8 +1,8 @@
 package billennium.tests.service;
 
-import billennium.tests.controller.web.rest.Response;
+import billennium.tests.model.Response;
 import billennium.tests.model.QuizModel;
-import billennium.tests.repository.ResultModel;
+import billennium.tests.model.ResultModel;
 
 import java.util.List;
 

@@ -1,9 +1,8 @@
-package billennium.tests.repository;
+package billennium.tests.service;
 
 import billennium.tests.entity.Question;
 import billennium.tests.entity.Quiz;
 import billennium.tests.exception.QuizException;
-import billennium.tests.mapper.QuizMapper;
 import billennium.tests.repository.question.QuestionRepository;
 import billennium.tests.repository.quiz.QuizRepository;
 import billennium.tests.service.QuestionService;
@@ -15,12 +14,10 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class QuestionDao implements QuestionService {
+public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
     private final QuizRepository quizRepository;
-    private final QuizMapper quizMapper;
-
 
     @Override
     public Question findQuestion(Long id) {

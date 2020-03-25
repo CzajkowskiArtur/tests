@@ -1,23 +1,30 @@
-package billennium.tests.repository;
+package billennium.tests.service;
 
-import billennium.tests.controller.web.rest.Response;
+import billennium.tests.mapper.ResultMapper;
+import billennium.tests.model.Response;
 import billennium.tests.entity.Quiz;
 import billennium.tests.entity.Result;
 import billennium.tests.exception.QuizException;
 import billennium.tests.mapper.QuizMapper;
 import billennium.tests.model.QuestionModel;
 import billennium.tests.model.QuizModel;
+import billennium.tests.model.ResultModel;
 import billennium.tests.repository.quiz.QuizRepository;
-import billennium.tests.service.QuizService;
+import billennium.tests.repository.result.ResultRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 @RequiredArgsConstructor
 public class QuizServiceImpl implements QuizService {
+
+    private static final Logger logger = LoggerFactory.getLogger(QuizServiceImpl.class);
 
     private final QuizRepository quizRepository;
     private final ResultRepository resultRepository;
@@ -37,14 +44,14 @@ public class QuizServiceImpl implements QuizService {
     }
 
 
-
     @Override
     public ResultModel checkAnswers(QuizModel quiz, List<Response> answersBundle) {
         ResultModel results = new ResultModel();
 
-
         for (QuestionModel questionModel : quiz.getQuestionModels()) {
+
             for (Response bundle : answersBundle) {
+
                 if (bundle.getQuestion().equals(questionModel.getText())) {
                     results.addAnswer(checkIsCorrectAnswer(questionModel, bundle.getSelectedAnswer()));
                     break;
@@ -63,7 +70,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public void saveResult(ResultModel resultModel) {
         Result result = resultMapper.mapToResultFromResultModel(resultModel);
-        resultRepository.saveAndFlush(result);
+        resultRepository.save(result);
     }
 
 

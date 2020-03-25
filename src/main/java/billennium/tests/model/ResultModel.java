@@ -1,4 +1,4 @@
-package billennium.tests.repository;
+package billennium.tests.model;
 
 
 import lombok.Getter;

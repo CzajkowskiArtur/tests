@@ -12,6 +12,4 @@ public interface QuizRepository extends JpaRepository<Quiz, Long> {
     @Override
     List<Quiz> findAll();
 
-    @Override
-    Optional<Quiz> findById(Long aLong);
 }

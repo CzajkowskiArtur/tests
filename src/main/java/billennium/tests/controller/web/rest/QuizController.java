@@ -2,7 +2,8 @@ package billennium.tests.controller.web.rest;
 
 import billennium.tests.entity.Question;
 import billennium.tests.model.QuizModel;
-import billennium.tests.repository.ResultModel;
+import billennium.tests.model.Response;
+import billennium.tests.model.ResultModel;
 import billennium.tests.service.QuestionService;
 import billennium.tests.service.QuizService;
 import lombok.RequiredArgsConstructor;

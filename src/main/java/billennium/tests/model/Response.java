@@ -1,4 +1,4 @@
-package billennium.tests.controller.web.rest;
+package billennium.tests.model;
 
 import lombok.Value;
 

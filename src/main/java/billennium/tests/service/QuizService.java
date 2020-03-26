@@ -1,5 +1,6 @@
 package billennium.tests.service;
 
+import billennium.tests.entity.Quiz;
 import billennium.tests.model.Response;
 import billennium.tests.model.QuizModel;
 import billennium.tests.model.ResultModel;
@@ -15,4 +16,6 @@ public interface QuizService {
     ResultModel checkAnswers(QuizModel quiz, List<Response> answersBundle);
 
     void saveResult(ResultModel resultModel);
+
+    QuizModel saveQuiz(String title);
 }

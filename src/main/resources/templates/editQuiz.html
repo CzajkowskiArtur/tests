@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="fragments/head :: headerFragment">
+</head>
+<body ng-app="editApp" th:attr="ng-init='quizId='+${quiz.id}">
+
+
+	<div class="container">
+
+		<div class="container"> 
+		
+			<div class="col-sm-2"></div>
+			
+			<div class="col-sm-8" ng-controller="EditCtrl">
+			
+<!--				<h2  class="text-center">New Quiz</h2>-->
+<!--				<br/>-->
+				
+				<form name="EditQuiz">
+<!--				-->
+<!--					<div class="form-group">-->
+<!--						<label >Title</label>-->
+<!--				        <input name="name" class="form-control" required="true" autofocus="true"  ng-model="quiz.name"/>-->
+<!--			        </div>-->
+<!--			        -->
+<!--			        <hr/>-->
+<!--			        <h2 class="form-signin-heading text-center">New Quiz</h2>-->
+<!--					<br/>-->
+			        
+			        <div class="form-group">
+
+						<ul style="list-style: none">
+							<li>
+								<div class="col-sm-9">
+									<div class="input-group">
+										<span class="input-group-addon" id="not-draggable-addon">Treść pytania</span>
+										<input class="form-control"  aria-describedby="not-draggable-addon" ng-model="newQuestion"/>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<button class="btn btn-primary" ng-click="saveQuestion(0, newQuestion)">
+										<span class="glyphicon glyphicon-floppy-disk" aria-hidden="false"></span>
+									</button>
+								</div>
+							</li>
+						</ul>
+						
+			        </div>
+				</form>  
+				<!-- Remove this when footer is added -->
+				<br/><br/><br/><br/><br/><br/><br/><br/>
+			</div>
+			 
+			<div class="col-sm-2"></div>
+			 
+		</div>
+	</div>
+
+	<div th:replace="fragments/angular :: angular"></div>
+	<script type="text/javascript" src="../js/angular-drag-and-drop-lists.min.js"
+		        th:src="@{/js/angular-drag-and-drop-lists.min.js}"></script>	
+	<script type="text/javascript" src="../js/editApp.js"
+		        th:src="@{/js/editApp.js}"></script>
+		        
+</body>
+</html>

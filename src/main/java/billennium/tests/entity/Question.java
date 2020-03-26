@@ -1,14 +1,12 @@
 package billennium.tests.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.Table;
@@ -30,8 +28,10 @@ public class Question extends BaseModel {
     @JsonIgnore
     private Quiz quiz;
 
-    @Column(name = "correct_answer")
-    private String correctAnswer;
+
+    @JsonIgnore
+    @OneToOne
+    private Answer correctAnswer;
 
 
     public List<Answer> getAnswers() {
@@ -58,11 +58,11 @@ public class Question extends BaseModel {
         this.quiz = quiz;
     }
 
-    public String getCorrectAnswer() {
+    public Answer getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
+    public void setCorrectAnswer(Answer correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 }

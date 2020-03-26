@@ -10,6 +10,7 @@
         <column name="id" type="LONG" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
         </column>
+        <column name="title" type="varchar(512)"/>
     </createTable>
     </changeSet>
 
@@ -29,7 +30,9 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="TEXT" type="VARCHAR(512)"/>
-            <column name="CORRECT_ANSWER" type="VARCHAR(512)"/>
+            <column name="CORRECT_ANSWER_ID" type="LONG">
+                <constraints nullable="true" />
+            </column>
             <column name="quiz_id" type="LONG">
                 <constraints nullable="true" />
             </column>
@@ -44,6 +47,7 @@
             <column name="question_id" type="LONG">
                 <constraints nullable="true" />
             </column>
+            <column name="CORRECT_ANSWER" type="BOOLEAN"></column>
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="question_id"

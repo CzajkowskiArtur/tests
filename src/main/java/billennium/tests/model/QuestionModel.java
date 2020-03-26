@@ -13,5 +13,5 @@ public class QuestionModel {
     private String text;
     private List<String> possibleAnswers;
     private String correctAnswers;
-
+    private boolean isCorrect;
 }

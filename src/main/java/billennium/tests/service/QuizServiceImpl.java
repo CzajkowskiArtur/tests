@@ -1,5 +1,6 @@
 package billennium.tests.service;
 
+import billennium.tests.entity.Answer;
 import billennium.tests.mapper.ResultMapper;
 import billennium.tests.model.Response;
 import billennium.tests.entity.Quiz;
@@ -57,13 +58,12 @@ public class QuizServiceImpl implements QuizService {
                     break;
                 }
             }
-
         }
         return results;
     }
 
-    private boolean checkIsCorrectAnswer(QuestionModel questionModel, String answer_id) {
-        return questionModel.getCorrectAnswers().equals(answer_id);
+    private boolean checkIsCorrectAnswer(QuestionModel questionModel, String selectedAnswer) {
+        return questionModel.getCorrectAnswers().equals(selectedAnswer);
     }
 
 
@@ -73,5 +73,9 @@ public class QuizServiceImpl implements QuizService {
         resultRepository.save(result);
     }
 
-
+    @Override
+    public QuizModel saveQuiz(String title) {
+        Quiz quiz = quizRepository.save(quizMapper.mapToQuiz(title));
+        return quizMapper.mapToQuestion(quiz);
+    }
 }

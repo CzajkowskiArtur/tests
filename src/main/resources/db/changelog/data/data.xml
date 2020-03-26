@@ -9,6 +9,7 @@
     <changeSet id="addQuiz" author="artur.czajkowski" dbms="h2">
         <insert tableName="Quiz">
             <column name="id">1</column>
+            <column name="title">TEST1</column>
         </insert>
     </changeSet>
 
@@ -17,209 +18,222 @@
         <insert tableName="QUESTION">
             <column name="TEXT">JAVA TO</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer">Język programowania</column>
+            <column name="CORRECT_ANSWER_ID">1</column>
         </insert>
-
         <insert tableName="QUESTION">
             <column name="TEXT">JVM TO</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer">JAVA VIRTUAL MACHINE</column>
+            <column name="CORRECT_ANSWER_ID">6</column>
         </insert>
-
         <insert tableName="QUESTION">
             <column name="TEXT">Co to jest konstruktor domyślny?</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer">Jest tworzony jeśli nie zdefiniowano jawnie konstruktora w klasie</column>
+            <column name="CORRECT_ANSWER_ID">7</column>
         </insert>
-
         <insert tableName="QUESTION">
             <column name="TEXT">Czy można zmienić istniejący String?</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer">Nie, String jest immutable</column>
+            <column name="CORRECT_ANSWER_ID">10</column>
         </insert>
-
         <insert tableName="QUESTION">
             <column name="TEXT">Czy klasa może dziedziczyć kilka interfejsów?</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer">Nie</column>
+            <column name="CORRECT_ANSWER_ID">14</column>
         </insert>
-
         <insert tableName="QUESTION">
             <column name="TEXT">Jak sprawdzić w klauzuli WHERE czy dana wartość w kolumnie jest różna od wartości null?</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer"> używając operator IS NOT NULL</column>
+            <column name="CORRECT_ANSWER_ID">16</column>
         </insert>
-
         <insert tableName="QUESTION">
             <column name="TEXT">Czy klasa może dziedziczyć z kilku klas jednocześnie?</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer">NIE</column>
+            <column name="CORRECT_ANSWER_ID">20</column>
         </insert>
-
         <insert tableName="QUESTION">
             <column name="TEXT">Co to jest iloczyn kartezjański?</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer"> Połączenie wierszy tabeli 1 z wszystkimi wierszami tabeli 2</column>
+            <column name="CORRECT_ANSWER_ID">24</column>
         </insert>
-
         <insert tableName="QUESTION">
             <column name="TEXT">Jakie słowo kluczowe służy wykluczeniu duplikatów z wyników zapytania SQL?</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer">DISTINCT</column>
+            <column name="CORRECT_ANSWER_ID">25</column>
         </insert>
-
         <insert tableName="QUESTION">
             <column name="TEXT">Jak pobrać pojedynczy znak z obiektu String?</column>
             <column name="quiz_id">1</column>
-            <column name="correct_answer"> metodą getChar</column>
+            <column name="CORRECT_ANSWER_ID">31</column>
         </insert>
-
-
-
     </changeSet>
 
     <changeSet id="addAnswer" author="artur.czajkowski" dbms="h2">
         <insert tableName="ANSWER">
             <column name="TEXT">Język programowania</column>
             <column name="QUESTION_ID">1</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">JVM</column>
             <column name="QUESTION_ID">1</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">PASCAL</column>
             <column name="QUESTION_ID">1</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
-
         <insert tableName="ANSWER">
-        <column name="TEXT">JRE</column>
-        <column name="QUESTION_ID">2</column>
-    </insert>
+            <column name="TEXT">JRE</column>
+            <column name="QUESTION_ID">2</column>
+            <column name="CORRECT_ANSWER">no</column>
+        </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">JDK</column>
             <column name="QUESTION_ID">2</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">JAVA VIRTUAL MACHINE</column>
             <column name="QUESTION_ID">2</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
-
         <insert tableName="ANSWER">
             <column name="TEXT">Jest tworzony jeśli nie zdefiniowano jawnie konstruktora w klasie</column>
             <column name="QUESTION_ID">3</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">Jest tworzony tylko wtedy kiedy zostanie jawnie zdefiniowany w kodzie</column>
             <column name="QUESTION_ID">3</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">Konstruktor zdefiniowany ze słowem kluczowym default</column>
             <column name="QUESTION_ID">3</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
 
         <insert tableName="ANSWER">
             <column name="TEXT">Nie, String jest immutable</column>
             <column name="QUESTION_ID">4</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">Tak, jak każdy inny obiekt</column>
             <column name="QUESTION_ID">4</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">Tylko za pomocą StringBuilder-a</column>
             <column name="QUESTION_ID">4</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
-
         <insert tableName="ANSWER">
             <column name="TEXT">Tylko wtedy jak interfejsy roszerzają jeden wspólny interfejs</column>
             <column name="QUESTION_ID">5</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">Tak</column>
             <column name="QUESTION_ID">5</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">Nie</column>
             <column name="QUESTION_ID">5</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
 
         <insert tableName="ANSWER">
             <column name="TEXT">używając operator IS NOT NULL</column>
             <column name="QUESTION_ID">6</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
         <insert tableName="ANSWER">
-            <column name="TEXT"> używając operatora != NULL</column>
+            <column name="TEXT">używając operatora != NULL</column>
             <column name="QUESTION_ID">6</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
-            <column name="TEXT"> używając operatora NULL</column>
+            <column name="TEXT">używając operatora NULL</column>
             <column name="QUESTION_ID">6</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
 
         <insert tableName="ANSWER">
             <column name="TEXT">TAK</column>
             <column name="QUESTION_ID">7</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">NIE</column>
             <column name="QUESTION_ID">7</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">Tylko w wyjątkowych przypadkach</column>
             <column name="QUESTION_ID">7</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
 
         <insert tableName="ANSWER">
-            <column name="TEXT"> Połączenie wierszy tabeli 1 z wierszami tabeli 2 za pomocą kluczy głównych</column>
+            <column name="TEXT">Połączenie wierszy tabeli 1 z wierszami tabeli 2 za pomocą kluczy głównych</column>
+            <column name="QUESTION_ID">8</column>
+            <column name="CORRECT_ANSWER">no</column>
+        </insert>
+        <insert tableName="ANSWER">
+            <column name="TEXT">Zwraca iloczyn wszystkich wartosci liczbowych tabeli 1 i tabeli 2</column>
+            <column name="CORRECT_ANSWER">no</column>
             <column name="QUESTION_ID">8</column>
         </insert>
         <insert tableName="ANSWER">
-            <column name="TEXT"> Zwraca iloczyn wszystkich wartosci liczbowych tabeli 1 i tabeli 2</column>
+            <column name="TEXT">Połączenie wierszy tabeli 1 z wszystkimi wierszami tabeli 2</column>
             <column name="QUESTION_ID">8</column>
-        </insert>
-        <insert tableName="ANSWER">
-            <column name="TEXT"> Połączenie wierszy tabeli 1 z wszystkimi wierszami tabeli 2</column>
-            <column name="QUESTION_ID">8</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
 
         <insert tableName="ANSWER">
             <column name="TEXT">DISTINCT</column>
             <column name="QUESTION_ID">9</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">SINGLE</column>
             <column name="QUESTION_ID">9</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">INTERSECT</column>
             <column name="QUESTION_ID">9</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">EXCEPT</column>
             <column name="QUESTION_ID">9</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
 
         <insert tableName="ANSWER">
             <column name="TEXT">poprzez uzycie indexu np. str[5]</column>
             <column name="QUESTION_ID">10</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">metodą codePointAt</column>
             <column name="QUESTION_ID">10</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">metodą getChar</column>
             <column name="QUESTION_ID">10</column>
+            <column name="CORRECT_ANSWER">yes</column>
         </insert>
         <insert tableName="ANSWER">
             <column name="TEXT">metodą get(numberZnaku)</column>
             <column name="QUESTION_ID">10</column>
+            <column name="CORRECT_ANSWER">no</column>
         </insert>
-
-
-
-
 
 
     </changeSet>

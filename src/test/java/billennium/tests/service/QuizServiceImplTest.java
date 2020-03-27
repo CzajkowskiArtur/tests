@@ -9,6 +9,8 @@ import billennium.tests.model.QuizModel;
 import billennium.tests.model.ResultModel;
 import billennium.tests.repository.quiz.QuizRepository;
 import billennium.tests.repository.result.ResultRepository;
+import billennium.tests.service.quiz.QuizService;
+import billennium.tests.service.quiz.QuizServiceImpl;
 import org.junit.Test;
 
 import static org.mockito.ArgumentMatchers.anyLong;

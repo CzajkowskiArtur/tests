@@ -4,8 +4,8 @@ import billennium.tests.entity.Question;
 import billennium.tests.model.QuizModel;
 import billennium.tests.model.Response;
 import billennium.tests.model.ResultModel;
-import billennium.tests.service.QuestionService;
-import billennium.tests.service.QuizService;
+import billennium.tests.service.question.QuestionService;
+import billennium.tests.service.quiz.QuizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +31,7 @@ public class QuizController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public QuizModel findTest() {
-        return quizService.findQuiz();
+        return quizService.findAllQuiz();
     }
 
     @RequestMapping(value = "/{quiz_id}/questions", method = RequestMethod.GET)

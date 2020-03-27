@@ -1,4 +1,4 @@
-package billennium.tests.service;
+package billennium.tests.service.question;
 
 import billennium.tests.entity.Question;
 import billennium.tests.model.QuizModel;

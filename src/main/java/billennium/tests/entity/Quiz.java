@@ -1,9 +1,12 @@
 package billennium.tests.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,6 +25,9 @@ public class Quiz extends BaseModel {
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<Question> questions;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private IdentyfierTests identyfierTests;
+
     public List<Question> getQuestions() {
         return questions;
     }
@@ -36,5 +42,13 @@ public class Quiz extends BaseModel {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public IdentyfierTests getIdentyfierTests() {
+        return identyfierTests;
+    }
+
+    public void setIdentyfierTests(IdentyfierTests identyfierTests) {
+        this.identyfierTests = identyfierTests;
     }
 }

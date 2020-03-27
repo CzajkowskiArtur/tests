@@ -1,4 +1,4 @@
-package billennium.tests.service;
+package billennium.tests.service.question;
 
 import billennium.tests.entity.Question;
 import billennium.tests.entity.Quiz;
@@ -6,7 +6,7 @@ import billennium.tests.exception.QuizException;
 import billennium.tests.model.QuizModel;
 import billennium.tests.repository.question.QuestionRepository;
 import billennium.tests.repository.quiz.QuizRepository;
-import billennium.tests.service.QuestionService;
+import billennium.tests.mapper.QuestionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

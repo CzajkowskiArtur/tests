@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static java.util.Optional.ofNullable;
@@ -17,7 +18,7 @@ import static java.util.Optional.ofNullable;
 @Service
 public class QuizMapper {
 
-    public QuizModel map(List<Quiz> quiz) {
+    public QuizModel map(Set<Quiz> quiz) {
         return quiz.stream()
                 .map(this::mapToQuestion)
                 .findAny()

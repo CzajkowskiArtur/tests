@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.HashSet;
 import java.util.List;
 
 @ComponentScan(basePackages = "billennium.tests.mapper")
@@ -28,8 +29,9 @@ public class QuizMapperTest extends JpaRepositoryIT {
         //given
         List<Quiz> quiz = quizRepository.findAll();
 
+
         //when
-        QuizModel quizModel = sut.map(quiz);
+        QuizModel quizModel = sut.map(new HashSet<>(quiz));
 
         //then
         assertThat(quizModel.getQuestionModels().get(1).getText(),is("JVM TO"));

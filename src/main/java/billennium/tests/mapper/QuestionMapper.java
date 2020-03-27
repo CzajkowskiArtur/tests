@@ -1,4 +1,4 @@
-package billennium.tests.service;
+package billennium.tests.mapper;
 
 import billennium.tests.entity.Question;
 import billennium.tests.model.QuestionModel;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class QuestionMapper {
 
-    Question mapToQuestion(QuestionModel questionModel) {
+    public Question mapToQuestion(QuestionModel questionModel) {
         Question question = new Question();
         question.setText(questionModel.getText());
         return question;

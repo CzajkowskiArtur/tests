@@ -2,36 +2,39 @@ package billennium.tests.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
-@Table
+
 @Entity(name = "indentyfier_tests")
+@Table
 public class IdentyfierTests {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private UUID id;
 
-    @OneToMany
+
+    @Column(name = "user_id")
+    private String userId;
+
+    @OneToMany(mappedBy = "identyfierTests",cascade = CascadeType.ALL)
     private List<Quiz> quizList;
 
-    @Column(name = "user")
-    private String user_id;
-
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
-    private Calendar createdDate;
+//    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+//    private Calendar createdDate;
 
     public UUID getId() {
         return id;
@@ -41,6 +44,14 @@ public class IdentyfierTests {
         this.id = id;
     }
 
+//    public Calendar getCreatedDate() {
+//        return createdDate;
+//    }
+//
+//    public void setCreatedDate(Calendar createdDate) {
+//        this.createdDate = createdDate;
+//    }
+
     public List<Quiz> getQuizList() {
         return quizList;
     }
@@ -49,11 +60,13 @@ public class IdentyfierTests {
         this.quizList = quizList;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
+
+
 }

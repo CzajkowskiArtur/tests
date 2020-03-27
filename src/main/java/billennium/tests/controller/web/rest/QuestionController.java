@@ -2,8 +2,8 @@ package billennium.tests.controller.web.rest;
 
 import billennium.tests.model.QuestionModel;
 import billennium.tests.model.QuizModel;
-import billennium.tests.service.QuestionService;
-import billennium.tests.service.QuizService;
+import billennium.tests.service.question.QuestionService;
+import billennium.tests.service.quiz.QuizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;

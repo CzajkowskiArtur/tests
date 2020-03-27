@@ -1,6 +1,5 @@
-package billennium.tests.service;
+package billennium.tests.service.quiz;
 
-import billennium.tests.entity.Answer;
 import billennium.tests.mapper.ResultMapper;
 import billennium.tests.model.Response;
 import billennium.tests.entity.Quiz;
@@ -17,8 +16,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -34,9 +34,9 @@ public class QuizServiceImpl implements QuizService {
 
 
     @Override
-    public QuizModel findQuiz() {
+    public QuizModel findAllQuiz() {
         List<Quiz> allQuestionModel = quizRepository.findAll();
-        return quizMapper.map(allQuestionModel);
+        return quizMapper.map(new HashSet<>(allQuestionModel));
     }
 
     public QuizModel findQuizById(Long id){

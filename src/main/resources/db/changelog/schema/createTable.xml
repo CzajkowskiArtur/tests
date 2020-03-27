@@ -5,12 +5,26 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
 
+
+    <changeSet id="addTableIndentufierTests" author="artur.czajkowski">
+        <createTable tableName="indentyfier_tests">
+            <column name="user_id" type="varchar(512)"/>
+            <column name="id" type="varchar(255)" valueComputed="${u_id}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
     <changeSet id="addTableQuiz" author="artur.czajkowski">
     <createTable tableName="quiz">
         <column name="id" type="LONG" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
         </column>
         <column name="title" type="varchar(512)"/>
+        <column name="IDENTYFIER_TESTS_ID" type="varchar(255)">
+            <constraints nullable="true" />
+        </column>
     </createTable>
     </changeSet>
 

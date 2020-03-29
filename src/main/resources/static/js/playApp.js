@@ -52,21 +52,21 @@
 
 			console.log(selection);
 
-			if (selection === undefined) {
+			if (selection === null) {
 				alert("Please, choose an answer");
 				return;
 			}
-
 			answers.push({
 				question: $scope.currentQuestion,
-				selectedAnswer: selection
-			});
+				selectedAnswer: selection,
+		});
 
 			$scope.questionCount++;
 			if ($scope.questionCount == $scope.totalQuestions) {
 				$scope.submitAnswers();
 			} else {
-				$scope.setQuestion($scope.questionCount);
+				$scope.selectedAnswer == null;
+					$scope.setQuestion($scope.questionCount);
 			}
 		}
 

@@ -17,9 +17,9 @@
             <div class="form-group">
                 <div ng-repeat="answer in currentAnswers">
                     <div class="radio">
-                        <input type="radio" ng-model="$parent.answerChoices" ng-value="answer" name="answerChoices">{{answer}}</input>
+                        <input type="radio" ng-model="$parent.answerChoices" ng-value=answer  name="answerChoices" ng-init="$parent.answerChoices = null">{{answer}}</input>
                     </div>
-                </div>
+                    </div>
                 <button th:text="#{label.playquiz.submit.question}" class="btn btn-lg btn-primary btn-block" type="submit" ng-click="answerQuestion(answerChoices)"></button>
             </div>
         </div>

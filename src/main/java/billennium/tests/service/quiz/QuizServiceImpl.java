@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -54,7 +53,7 @@ public class QuizServiceImpl implements QuizService {
             for (Response bundle : answersBundle) {
 
                 if (bundle.getQuestion().equals(questionModel.getText())) {
-                    results.addAnswer(checkIsCorrectAnswer(questionModel, bundle.getSelectedAnswer()));
+//                    results.addAnswer(checkIsCorrectAnswer(questionModel, bundle.getSelectedAnswer()));
                     break;
                 }
             }

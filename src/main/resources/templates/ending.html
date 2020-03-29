@@ -18,6 +18,16 @@
     <div class="col-sm-2"></div>
 </div>
 
+<input type="button" class="btn btn-success"
+       style="font-weight: bold;display: inline;"
+       value="Close"
+       onclick="closeMe()">
+function closeMe()
+{
+window.opener = self;
+window.close();
+}
+
 
 </body>
 </html>

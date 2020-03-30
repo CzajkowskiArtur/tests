@@ -46,14 +46,12 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public ResultModel checkAnswers(QuizModel quiz, List<Response> answersBundle) {
-        ResultModel results = new ResultModel();
+        ResultModel results = new ResultModel(answersBundle);
 
         for (QuestionModel questionModel : quiz.getQuestionModels()) {
-
             for (Response bundle : answersBundle) {
-
                 if (bundle.getQuestion().equals(questionModel.getText())) {
-//                    results.addAnswer(checkIsCorrectAnswer(questionModel, bundle.getSelectedAnswer()));
+                    results.addAnswer(checkIsCorrectAnswer(questionModel, bundle.getSelectedAnswer()));
                     break;
                 }
             }

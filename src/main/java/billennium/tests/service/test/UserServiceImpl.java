@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,20 +22,16 @@ public class UserServiceImpl implements UserService {
     public void saveUser(String userId) {
         IdentyfierTests identyfierTests = new IdentyfierTests();
         identyfierTests.setUserId(userId);
+        identyfierTestsRepository.save(identyfierTests);
+    }
 
-        IdentyfierTests identyfierTests1 = identyfierTestsRepository.save(identyfierTests);
-
-        List<Quiz> allQuiz = getAllQuiz();
-         allQuiz.stream().forEach( f ->
-                f.setIdentyfierTests(identyfierTests1)
-                );
-        quizRepository.saveAll(allQuiz);
-
+    @Override
+    public Optional<IdentyfierTests> findUser(UUID userId) {
+        return identyfierTestsRepository.findById(userId);
     }
 
     private List<Quiz> getAllQuiz() {
         List<Quiz> allQuizList = quizRepository.findAll();
         return allQuizList;
     }
-
 }

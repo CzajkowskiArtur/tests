@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.UUID;
+
 @Controller
 @RequiredArgsConstructor
 public class WebController {
@@ -20,7 +22,8 @@ public class WebController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
-        return "home";
+
+        return  "redirect:/createUser";
     }
 
     @RequestMapping(value = "/createQuiz", method = RequestMethod.GET)
@@ -52,11 +55,14 @@ public class WebController {
         return "ending";
     }
 
-    @RequestMapping(value = "/quiz/play", method = RequestMethod.GET)
-    public String playQuiz(Model model) {
-        QuizModel quiz = quizService.findAllQuiz();
-        model.addAttribute("quiz", quiz);
-        return "playQuiz";
+    @RequestMapping(value = "/quiz/play/{user_id}", method = RequestMethod.GET)
+    public String playQuiz(@PathVariable String user_id, Model model) {
+        if (userService.findUser(UUID.fromString(user_id)).isPresent()) {
+            QuizModel quiz = quizService.findAllQuiz();
+            model.addAttribute("quiz", quiz);
+            return "playQuiz";
+        }
+        return "errorQuiz";
     }
 }
 

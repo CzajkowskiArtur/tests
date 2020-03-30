@@ -8,10 +8,11 @@
 
     <changeSet id="addTableIndentufierTests" author="artur.czajkowski">
         <createTable tableName="indentyfier_tests">
-            <column name="user_id" type="varchar(512)"/>
             <column name="id" type="varchar(255)" valueComputed="${u_id}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="user_id" type="varchar(512)"/>
+            <column name="created_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
@@ -35,6 +36,19 @@
             </column>
             <column name="total_question" type="int"/>
             <column name="sum_of_correct_answers" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="addTableDetails" author="artur.czajkowski">
+        <createTable tableName="details">
+            <column name="id" type="LONG" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="asked_question" type="VARCHAR(512)"/>
+            <column name="given_answer" type="VARCHAR(512)"/>
+            <column name="result_id" type="LONG">
+                <constraints nullable="true" />
+            </column>
         </createTable>
     </changeSet>
 

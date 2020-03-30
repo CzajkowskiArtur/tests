@@ -13,6 +13,7 @@ import billennium.tests.service.quiz.QuizService;
 import billennium.tests.service.quiz.QuizServiceImpl;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -32,7 +33,7 @@ public class QuizServiceImplTest {
     public void testSaveResultShouldSave() {
 
         //given
-        ResultModel resultModel = new ResultModel();
+        ResultModel resultModel = new ResultModel(new ArrayList<>());
 
         //when
         service.saveResult(resultModel);

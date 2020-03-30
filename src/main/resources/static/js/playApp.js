@@ -52,10 +52,6 @@
 
 			console.log(selection);
 
-			if (selection === null) {
-				alert("Please, choose an answer");
-				return;
-			}
 			answers.push({
 				question: $scope.currentQuestion,
 				selectedAnswer: selection,

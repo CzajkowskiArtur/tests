@@ -1,19 +1,15 @@
 package billennium.tests.entity;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 
@@ -22,19 +18,21 @@ import java.util.UUID;
 public class IdentyfierTests {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
+    @ColumnDefault("random_uuid()")
+    @Type(type = "uuid-char")
     private UUID id;
-
 
     @Column(name = "user_id")
     private String userId;
 
-    @OneToMany(mappedBy = "identyfierTests",cascade = CascadeType.ALL)
-    private List<Quiz> quizList;
-
-//    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
-//    private Calendar createdDate;
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+    private Calendar createdDate;
 
     public UUID getId() {
         return id;
@@ -44,20 +42,12 @@ public class IdentyfierTests {
         this.id = id;
     }
 
-//    public Calendar getCreatedDate() {
-//        return createdDate;
-//    }
-//
-//    public void setCreatedDate(Calendar createdDate) {
-//        this.createdDate = createdDate;
-//    }
-
-    public List<Quiz> getQuizList() {
-        return quizList;
+    public Calendar getCreatedDate() {
+        return createdDate;
     }
 
-    public void setQuizList(List<Quiz> quizList) {
-        this.quizList = quizList;
+    public void setCreatedDate(Calendar createdDate) {
+        this.createdDate = createdDate;
     }
 
     public String getUserId() {

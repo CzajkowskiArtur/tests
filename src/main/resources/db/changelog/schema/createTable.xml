@@ -6,8 +6,8 @@
       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
 
 
-    <changeSet id="addTableIndentufierTests" author="artur.czajkowski">
-        <createTable tableName="indentyfier_tests">
+    <changeSet id="addTableUser" author="artur.czajkowski">
+        <createTable tableName="user">
             <column name="id" type="varchar(255)" valueComputed="${u_id}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -44,8 +44,8 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="addTableDetails" author="artur.czajkowski">
-        <createTable tableName="details">
+    <changeSet id="addTableResultDetails" author="artur.czajkowski">
+        <createTable tableName="result_details">
             <column name="id" type="LONG" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>

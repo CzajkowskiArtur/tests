@@ -1,9 +1,9 @@
 package billennium.tests.service.test;
 
-import billennium.tests.entity.IdentyfierTests;
+import billennium.tests.entity.User;
 import billennium.tests.entity.Quiz;
 import billennium.tests.repository.quiz.QuizRepository;
-import billennium.tests.repository.test.IdentyfierTestsRepository;
+import billennium.tests.repository.test.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,19 +15,19 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final IdentyfierTestsRepository identyfierTestsRepository;
+    private final UserRepository userRepository;
     private final QuizRepository quizRepository;
 
     @Override
     public void saveUser(String userId) {
-        IdentyfierTests identyfierTests = new IdentyfierTests();
-        identyfierTests.setUserId(userId);
-        identyfierTestsRepository.save(identyfierTests);
+        User user = new User();
+        user.setUserId(userId);
+        userRepository.save(user);
     }
 
     @Override
-    public Optional<IdentyfierTests> findUser(UUID userId) {
-        return identyfierTestsRepository.findById(userId);
+    public Optional<User> findUser(UUID userId) {
+        return userRepository.findById(userId);
     }
 
     private List<Quiz> getAllQuiz() {

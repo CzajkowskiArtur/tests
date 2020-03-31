@@ -1,6 +1,6 @@
 package billennium.tests.service.quiz;
 
-import billennium.tests.entity.Details;
+import billennium.tests.entity.ResultDetails;
 import billennium.tests.mapper.DetailsMapper;
 import billennium.tests.mapper.ResultMapper;
 import billennium.tests.model.Response;
@@ -84,7 +84,7 @@ public class QuizServiceImpl implements QuizService {
     }
 
     private void saveDetails(Result saveResult, ResultModel resultModel, QuizModel quiz) {
-        List<Details> details = detailsMapper.mapToResultFromResultModel(saveResult, resultModel, quiz);
+        List<ResultDetails> details = detailsMapper.mapToResultFromResultModel(saveResult, resultModel, quiz);
         detailsRepository.saveAll(details);
     }
 

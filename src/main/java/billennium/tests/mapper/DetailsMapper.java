@@ -1,6 +1,6 @@
 package billennium.tests.mapper;
 
-import billennium.tests.entity.Details;
+import billennium.tests.entity.ResultDetails;
 import billennium.tests.entity.Result;
 import billennium.tests.model.QuizModel;
 import billennium.tests.model.Response;
@@ -13,14 +13,14 @@ import java.util.List;
 @Component
 public class DetailsMapper {
 
-    public List<Details> mapToResultFromResultModel(Result saveResult, ResultModel resultModel, QuizModel quizModel) {
-        List<Details> details = new LinkedList<>();
+    public List<ResultDetails> mapToResultFromResultModel(Result saveResult, ResultModel resultModel, QuizModel quizModel) {
+        List<ResultDetails> details = new LinkedList<>();
 
 
         List<Response> list = resultModel.getList();
 
         for (Response response : list) {
-            Details detail = new Details();
+            ResultDetails detail = new ResultDetails();
             detail.setQuestion(response.getQuestion());
             detail.setGivenAnswer(response.getSelectedAnswer());
             detail.setResult(saveResult);

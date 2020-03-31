@@ -28,7 +28,6 @@ public class Question extends BaseModel {
     @JsonIgnore
     private Quiz quiz;
 
-
     @JsonIgnore
     @OneToOne
     private Answer correctAnswer;

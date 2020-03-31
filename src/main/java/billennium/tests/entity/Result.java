@@ -24,7 +24,7 @@ public class Result extends BaseModel {
     private String userId;
 
     @OneToMany(mappedBy = "result", cascade = CascadeType.ALL)
-    private List<Details> details;
+    private List<ResultDetails> details;
 
     public Integer getTotalQuestions() {
         return totalQuestions;
@@ -58,11 +58,11 @@ public class Result extends BaseModel {
         this.userId = userId;
     }
 
-    public List<Details> getDetails() {
+    public List<ResultDetails> getDetails() {
         return details;
     }
 
-    public void setDetails(List<Details> details) {
+    public void setDetails(List<ResultDetails> details) {
         this.details = details;
     }
 }

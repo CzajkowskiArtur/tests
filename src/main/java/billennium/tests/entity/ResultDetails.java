@@ -9,8 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "details")
-public class Details extends BaseModel {
+@Table(name = "result_details")
+public class ResultDetails extends BaseModel {
 
     @Column(name = "asked_question")
     private String question;

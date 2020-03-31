@@ -13,9 +13,9 @@ import java.util.Calendar;
 import java.util.UUID;
 
 
-@Entity(name = "indentyfier_tests")
+@Entity(name = "user")
 @Table
-public class IdentyfierTests {
+public class User {
 
     @Id
     @GeneratedValue(generator = "UUID")

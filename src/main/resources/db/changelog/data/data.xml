@@ -10,6 +10,7 @@
         <insert tableName="Quiz">
             <column name="id">1</column>
             <column name="title">TEST1</column>
+            <column name="quiz_status">FREE</column>
         </insert>
     </changeSet>
 

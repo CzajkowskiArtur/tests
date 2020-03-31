@@ -10,6 +10,8 @@ public interface QuizService {
 
     QuizModel findAllQuiz();
 
+    void updateQuizStatus(Long quizId);
+
     QuizModel findQuizById(Long id);
 
     ResultModel checkAnswers(QuizModel quiz, List<Response> answersBundle);

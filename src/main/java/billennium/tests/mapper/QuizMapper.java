@@ -3,6 +3,7 @@ package billennium.tests.mapper;
 import billennium.tests.entity.Answer;
 import billennium.tests.entity.Question;
 import billennium.tests.entity.Quiz;
+import billennium.tests.entity.QuizStatus;
 import billennium.tests.model.QuestionModel;
 import billennium.tests.model.QuizModel;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,9 @@ public class QuizMapper {
 
     public QuizModel map(Set<Quiz> quiz) {
         return quiz.stream()
+                .filter(f -> f.getQuizStatus() == QuizStatus.FREE)
                 .map(this::mapToQuestion)
-                .findAny()
+                .findFirst()
                 .get();
     }
 

@@ -1,12 +1,9 @@
 package billennium.tests.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -25,8 +22,8 @@ public class Quiz extends BaseModel {
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<Question> questions;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private IdentyfierTests identyfierTests;
+    @Enumerated(EnumType.STRING)
+    private QuizStatus quizStatus;
 
     public List<Question> getQuestions() {
         return questions;
@@ -44,11 +41,11 @@ public class Quiz extends BaseModel {
         this.questions = questions;
     }
 
-    public IdentyfierTests getIdentyfierTests() {
-        return identyfierTests;
+    public QuizStatus getQuizStatus() {
+        return quizStatus;
     }
 
-    public void setIdentyfierTests(IdentyfierTests identyfierTests) {
-        this.identyfierTests = identyfierTests;
+    public void setQuizStatus(QuizStatus quizStatus) {
+        this.quizStatus = quizStatus;
     }
 }

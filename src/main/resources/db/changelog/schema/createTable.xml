@@ -16,6 +16,9 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="addEnum" author="artur.czajkowksi">
+        <sql>CREATE TYPE status AS ENUM ('FREE','IN_PROGRESS')</sql>
+    </changeSet>
 
     <changeSet id="addTableQuiz" author="artur.czajkowski">
     <createTable tableName="quiz">
@@ -26,8 +29,10 @@
         <column name="IDENTYFIER_TESTS_ID" type="varchar(255)">
             <constraints nullable="true" />
         </column>
+        <column name="quiz_status" type="status"></column>
     </createTable>
     </changeSet>
+
 
     <changeSet id="addTableResult" author="artur.czajkowski">
         <createTable tableName="result">

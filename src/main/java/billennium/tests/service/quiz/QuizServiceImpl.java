@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +37,12 @@ public class QuizServiceImpl implements QuizService {
     public QuizModel findAllQuiz() {
         List<Quiz> allQuestionModel = quizRepository.findAll();
         return quizMapper.map(new HashSet<>(allQuestionModel));
+    }
+
+    @Override
+    @Transactional
+    public void updateQuizStatus(Long quizId) {
+        quizRepository.changeQuizStatus(quizId);
     }
 
     public QuizModel findQuizById(Long id){

@@ -58,5 +58,4 @@ public class IdentyfierTests {
         this.userId = userId;
     }
 
-
 }

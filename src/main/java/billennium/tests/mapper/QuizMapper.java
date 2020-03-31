@@ -32,6 +32,8 @@ public class QuizMapper {
         List<QuestionModel> list = new ArrayList<>();
         Optional<List<Question>> questions = ofNullable(quiz.getQuestions());
 
+        quiz.getUserId();
+
         questions.ifPresent(f ->
                 f.forEach(question ->
                         list.add(QuestionModel.builder()
@@ -47,6 +49,7 @@ public class QuizMapper {
 
         return QuizModel.builder()
                 .id(String.valueOf(quiz.getId()))
+                .userId(quiz.getUserId())
                 .questionModels(list)
                 .build();
     }

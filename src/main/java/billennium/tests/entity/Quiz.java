@@ -1,6 +1,7 @@
 package billennium.tests.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,6 +23,9 @@ public class Quiz extends BaseModel {
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<Question> questions;
 
+    @Column(name = "user_id")
+    private String userId;
+
     @Enumerated(EnumType.STRING)
     private QuizStatus quizStatus;
 
@@ -39,6 +43,14 @@ public class Quiz extends BaseModel {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public QuizStatus getQuizStatus() {

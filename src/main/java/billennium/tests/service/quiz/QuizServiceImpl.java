@@ -41,8 +41,8 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     @Transactional
-    public void updateQuizStatus(Long quizId) {
-        quizRepository.changeQuizStatus(quizId);
+    public void updateQuizStatus(Long quizId, String userId) {
+        quizRepository.changeQuizStatus(userId, quizId);
     }
 
     public QuizModel findQuizById(Long id){
@@ -72,8 +72,8 @@ public class QuizServiceImpl implements QuizService {
 
 
     @Override
-    public void saveResult(ResultModel resultModel) {
-        Result result = resultMapper.mapToResultFromResultModel(resultModel);
+    public void saveResult(ResultModel resultModel, QuizModel quiz) {
+        Result result = resultMapper.mapToResultFromResultModel(resultModel, quiz);
         resultRepository.save(result);
     }
 

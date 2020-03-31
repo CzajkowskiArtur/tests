@@ -17,6 +17,12 @@ public class Result extends BaseModel {
     @Column(name = "sum_of_correct_answers")
     private Integer correctQuestions;
 
+    @Column(name = "quiz_id")
+    private String quizId;
+
+    @Column(name = "user_id")
+    private String userId;
+
     @OneToMany(mappedBy = "result", cascade = CascadeType.ALL)
     private List<Details> details;
 
@@ -34,6 +40,22 @@ public class Result extends BaseModel {
 
     public void setCorrectQuestions(Integer correctQuestions) {
         this.correctQuestions = correctQuestions;
+    }
+
+    public String getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(String quizId) {
+        this.quizId = quizId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public List<Details> getDetails() {

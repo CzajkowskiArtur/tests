@@ -10,13 +10,13 @@ public interface QuizService {
 
     QuizModel findAllQuiz();
 
-    void updateQuizStatus(Long quizId);
+    void updateQuizStatus(Long quizId, String userId);
 
     QuizModel findQuizById(Long id);
 
     ResultModel checkAnswers(QuizModel quiz, List<Response> answersBundle);
 
-    void saveResult(ResultModel resultModel);
+    void saveResult(ResultModel resultModel, QuizModel quiz);
 
     QuizModel saveQuiz(String title);
 }

@@ -18,6 +18,9 @@ public class Details extends BaseModel {
     @Column(name = "given_answer")
     private String givenAnswer;
 
+    @Column(name = "user_id")
+    private String userId;
+
     @ManyToOne
     @JsonIgnore
     private Result result;
@@ -36,6 +39,14 @@ public class Details extends BaseModel {
 
     public void setGivenAnswer(String givenAnswer) {
         this.givenAnswer = givenAnswer;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Result getResult() {

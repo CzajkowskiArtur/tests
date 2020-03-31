@@ -60,7 +60,7 @@ public class WebController {
         if (userService.findUser(UUID.fromString(user_id)).isPresent()) {
             QuizModel quiz = quizService.findAllQuiz();
             model.addAttribute("quiz", quiz);
-            quizService.updateQuizStatus(Long.valueOf(quiz.getId()));
+            quizService.updateQuizStatus(Long.valueOf(quiz.getId()), user_id);
             return "playQuiz";
         }
         return "errorQuiz";

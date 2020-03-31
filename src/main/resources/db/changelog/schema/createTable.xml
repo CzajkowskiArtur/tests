@@ -26,10 +26,8 @@
             <constraints primaryKey="true" nullable="false"/>
         </column>
         <column name="title" type="varchar(512)"/>
-        <column name="IDENTYFIER_TESTS_ID" type="varchar(255)">
-            <constraints nullable="true" />
-        </column>
         <column name="quiz_status" type="status"></column>
+        <column name="user_id" type="VARCHAR(512)"/>
     </createTable>
     </changeSet>
 
@@ -41,6 +39,8 @@
             </column>
             <column name="total_question" type="int"/>
             <column name="sum_of_correct_answers" type="int"/>
+            <column name="quiz_id" type="VARCHAR(3)"/>
+            <column name="user_id" type="VARCHAR(512)"/>
         </createTable>
     </changeSet>
 
@@ -54,6 +54,7 @@
             <column name="result_id" type="LONG">
                 <constraints nullable="true" />
             </column>
+            <column name="user_id" type="VARCHAR(512)"/>
         </createTable>
     </changeSet>
 

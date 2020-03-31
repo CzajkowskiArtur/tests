@@ -15,6 +15,6 @@ public interface QuizRepository extends JpaRepository<Quiz, Long> {
     List<Quiz> findAll();
 
     @Modifying
-    @Query("update Quiz q set q.quizStatus = 'IN_PROGRESS' where q.id = :quizId")
-    void changeQuizStatus(@Param("quizId") Long quizId);
+    @Query("update Quiz q set q.quizStatus = 'IN_PROGRESS', q.userId = :userId where q.id = :quizId")
+    void changeQuizStatus(@Param("userId") String userId, @Param("quizId") Long quizId);
 }

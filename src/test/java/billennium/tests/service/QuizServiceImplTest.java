@@ -34,12 +34,13 @@ public class QuizServiceImplTest {
 
         //given
         ResultModel resultModel = new ResultModel(new ArrayList<>());
+        QuizModel quizModel = QuizModel.builder().build();
 
         //when
-        service.saveResult(resultModel);
+        service.saveResult(resultModel, quizModel);
 
         //then
-        verify(resultRepository, times(1)).save(resultMapper.mapToResultFromResultModel(resultModel));
+        verify(resultRepository, times(1)).save(resultMapper.mapToResultFromResultModel(resultModel, quizModel));
     }
 
     @Test

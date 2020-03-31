@@ -53,7 +53,7 @@ public class QuizController {
     public void playQuiz(@PathVariable long quiz_id, @RequestBody List<Response> answersBundle) {
         QuizModel quiz = quizService.findQuizById(quiz_id);
         ResultModel resultModel = quizService.checkAnswers(quiz, answersBundle);
-        quizService.saveResult(resultModel);
+        quizService.saveResult(resultModel, quiz);
 
     }
 

@@ -10,7 +10,6 @@ public class ResultModel {
 
     private int totalQuestions = 0;
     private int correctQuestions = 0;
-
     private List<Response> list;
 
     public ResultModel(List<Response> list) {

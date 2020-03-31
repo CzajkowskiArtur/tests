@@ -11,5 +11,6 @@ public class QuizModel {
 
     private String id;
     private List<QuestionModel> questionModels;
+    private String userId;
 
 }

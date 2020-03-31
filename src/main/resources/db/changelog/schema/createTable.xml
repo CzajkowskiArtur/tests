@@ -5,15 +5,58 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
 
+
+    <changeSet id="addTableIndentufierTests" author="artur.czajkowski">
+        <createTable tableName="indentyfier_tests">
+            <column name="id" type="varchar(255)" valueComputed="${u_id}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="varchar(512)"/>
+            <column name="created_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="addEnum" author="artur.czajkowksi">
+        <sql>CREATE TYPE status AS ENUM ('FREE','IN_PROGRESS')</sql>
+    </changeSet>
+
     <changeSet id="addTableQuiz" author="artur.czajkowski">
     <createTable tableName="quiz">
         <column name="id" type="LONG" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
         </column>
+        <column name="title" type="varchar(512)"/>
+        <column name="quiz_status" type="status"></column>
+        <column name="user_id" type="VARCHAR(512)"/>
     </createTable>
     </changeSet>
 
 
+    <changeSet id="addTableResult" author="artur.czajkowski">
+        <createTable tableName="result">
+            <column name="id" type="LONG" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="total_question" type="int"/>
+            <column name="sum_of_correct_answers" type="int"/>
+            <column name="quiz_id" type="VARCHAR(3)"/>
+            <column name="user_id" type="VARCHAR(512)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="addTableDetails" author="artur.czajkowski">
+        <createTable tableName="details">
+            <column name="id" type="LONG" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="asked_question" type="VARCHAR(512)"/>
+            <column name="given_answer" type="VARCHAR(512)"/>
+            <column name="result_id" type="LONG">
+                <constraints nullable="true" />
+            </column>
+            <column name="user_id" type="VARCHAR(512)"/>
+        </createTable>
+    </changeSet>
 
     <changeSet id="addTableQuestionAndAnswer" author="artur.czajkowski">
         <createTable tableName="question">
@@ -21,6 +64,9 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="TEXT" type="VARCHAR(512)"/>
+            <column name="CORRECT_ANSWER_ID" type="LONG">
+                <constraints nullable="true" />
+            </column>
             <column name="quiz_id" type="LONG">
                 <constraints nullable="true" />
             </column>
@@ -35,6 +81,7 @@
             <column name="question_id" type="LONG">
                 <constraints nullable="true" />
             </column>
+            <column name="CORRECT_ANSWER" type="BOOLEAN"></column>
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="question_id"

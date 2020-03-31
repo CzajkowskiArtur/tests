@@ -4,8 +4,6 @@
 </head>
 <body ng-app="playQuizApp" th:attr="ng-init='quizId='+${quiz.id}">
 
-<!--<div th:replace="fragments/header :: header">...</div>&ndash;&gt;-->
-
 <div class="container">
 
     <div class="col-sm-2"></div>
@@ -13,31 +11,28 @@
     <div class="col-sm-8" ng-controller="PlayQuizCtrl">
 
         <div ng-show="playing">
-            <h2 class="form-signin-heading">{{currentQuestion.text}}</h2>
+            <h2 class="form-signin-heading">{{currentQuestion}}</h2>
             <hr/>
 
             <div class="form-group">
                 <div ng-repeat="answer in currentAnswers">
                     <div class="radio">
-                        <input type="radio" ng-model="$parent.answerChoices" ng-value="{{answer.id}}" name="answerChoices">{{answer.text}}</input>
+                        <input type="radio" ng-model="$parent.answerChoices" ng-value=answer  name="answerChoices" ng-init="$parent.answerChoices = null">{{answer}}</input>
                     </div>
-                </div>
+                    </div>
                 <button th:text="#{label.playquiz.submit.question}" class="btn btn-lg btn-primary btn-block" type="submit" ng-click="answerQuestion(answerChoices)"></button>
             </div>
         </div>
 
         <div ng-hide="playing">
-            <h2 th:text="${quiz.id}" class="form-signin-heading text-center">...</h2>
+            <h2 class="form-signin-heading text-center">Thanks for completing the test</h2>
             <hr/>
-
-            <h1 class="text-center">{{ Math.round((results.correctQuestions * 100)  / results.totalQuestions) }}%</h1>
-
-            <h3 class="text-center">{{results.correctQuestions}} / {{results.totalQuestions}}</h3>
         </div>
-        </div>
-
 
     </div>
+
+
+</div>
 
     <div class="col-sm-2"></div>
 </div>

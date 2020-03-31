@@ -1,5 +1,7 @@
 package billennium.tests.service.quiz;
 
+import billennium.tests.entity.Details;
+import billennium.tests.mapper.DetailsMapper;
 import billennium.tests.mapper.ResultMapper;
 import billennium.tests.model.Response;
 import billennium.tests.entity.Quiz;
@@ -11,6 +13,7 @@ import billennium.tests.model.QuizModel;
 import billennium.tests.model.ResultModel;
 import billennium.tests.repository.quiz.QuizRepository;
 import billennium.tests.repository.result.ResultRepository;
+import billennium.tests.repository.result.details.DetailsRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,8 +32,10 @@ public class QuizServiceImpl implements QuizService {
 
     private final QuizRepository quizRepository;
     private final ResultRepository resultRepository;
+    private final DetailsRepository detailsRepository;
     private final QuizMapper quizMapper;
     private final ResultMapper resultMapper;
+    private final DetailsMapper detailsMapper;
 
 
     @Override
@@ -45,7 +50,7 @@ public class QuizServiceImpl implements QuizService {
         quizRepository.changeQuizStatus(userId, quizId);
     }
 
-    public QuizModel findQuizById(Long id){
+    public QuizModel findQuizById(Long id) {
         Quiz quiz = quizRepository.findById(id).orElseThrow(QuizException::new);
         return quizMapper.mapToQuestion(quiz);
     }
@@ -74,7 +79,13 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public void saveResult(ResultModel resultModel, QuizModel quiz) {
         Result result = resultMapper.mapToResultFromResultModel(resultModel, quiz);
-        resultRepository.save(result);
+        Result saveResult = resultRepository.save(result);
+        saveDetails(saveResult, resultModel, quiz);
+    }
+
+    private void saveDetails(Result saveResult, ResultModel resultModel, QuizModel quiz) {
+        List<Details> details = detailsMapper.mapToResultFromResultModel(saveResult, resultModel, quiz);
+        detailsRepository.saveAll(details);
     }
 
     @Override

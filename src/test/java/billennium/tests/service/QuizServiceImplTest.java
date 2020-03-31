@@ -3,17 +3,20 @@ package billennium.tests.service;
 
 import billennium.tests.entity.Quiz;
 import billennium.tests.exception.QuizException;
+import billennium.tests.mapper.DetailsMapper;
 import billennium.tests.mapper.QuizMapper;
 import billennium.tests.mapper.ResultMapper;
 import billennium.tests.model.QuizModel;
 import billennium.tests.model.ResultModel;
 import billennium.tests.repository.quiz.QuizRepository;
 import billennium.tests.repository.result.ResultRepository;
+import billennium.tests.repository.result.details.DetailsRepository;
 import billennium.tests.service.quiz.QuizService;
 import billennium.tests.service.quiz.QuizServiceImpl;
 import org.junit.Test;
 
 import java.util.ArrayList;
+
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -24,10 +27,12 @@ public class QuizServiceImplTest {
 
     QuizRepository quizRepository = mock(QuizRepository.class);
     ResultRepository resultRepository = mock(ResultRepository.class);
+    DetailsRepository detailsRepository = mock(DetailsRepository.class);
     QuizMapper quizMapper = mock(QuizMapper.class);
     ResultMapper resultMapper = mock(ResultMapper.class);
+    DetailsMapper detailsMapper = mock(DetailsMapper.class);
 
-    QuizService service = new QuizServiceImpl(quizRepository, resultRepository, quizMapper, resultMapper);
+    QuizService service = new QuizServiceImpl(quizRepository, resultRepository, detailsRepository, quizMapper, resultMapper, detailsMapper);
 
     @Test
     public void testSaveResultShouldSave() {

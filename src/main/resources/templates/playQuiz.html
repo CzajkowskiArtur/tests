@@ -23,7 +23,16 @@
                 <button th:text="#{label.playquiz.submit.question}" class="btn btn-lg btn-primary btn-block" type="submit" ng-click="answerQuestion(answerChoices)"></button>
             </div>
         </div>
+
+        <div ng-hide="playing">
+            <h2 class="form-signin-heading text-center">Thanks for completing the test</h2>
+            <hr/>
+        </div>
+
     </div>
+
+
+</div>
 
     <div class="col-sm-2"></div>
 </div>

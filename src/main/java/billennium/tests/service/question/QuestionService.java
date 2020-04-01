@@ -9,7 +9,7 @@ public interface QuestionService {
 
     Question findQuestion(Long id);
 
-    List<String> findQuiz(Long id);
+   List<String> findQuiz(Long id);
 
     List<String> getListAnswers(Long id);
 

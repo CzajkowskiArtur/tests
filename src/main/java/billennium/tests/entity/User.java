@@ -4,10 +4,12 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.UUID;
@@ -28,11 +30,14 @@ public class User {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @Column(name = "user_id")
-    private String userId;
+    @Column(name = "email")
+    private String email;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Calendar createdDate;
+
+    @OneToOne(mappedBy = "userId", cascade = CascadeType.ALL)
+    private ExecutingQuiz executingQuiz;
 
     public UUID getId() {
         return id;
@@ -50,12 +55,19 @@ public class User {
         this.createdDate = createdDate;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
+    public ExecutingQuiz getExecutingQuiz() {
+        return executingQuiz;
+    }
+
+    public void setExecutingQuiz(ExecutingQuiz executingQuiz) {
+        this.executingQuiz = executingQuiz;
+    }
 }

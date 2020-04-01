@@ -1,11 +1,11 @@
 package billennium.tests.service.question;
 
 import billennium.tests.entity.Question;
-import billennium.tests.entity.Quiz;
+import billennium.tests.entity.QuizDefinition;
 import billennium.tests.exception.QuizException;
 import billennium.tests.model.QuizModel;
 import billennium.tests.repository.question.QuestionRepository;
-import billennium.tests.repository.quiz.QuizRepository;
+import billennium.tests.repository.quiz.QuizDefinitionRepository;
 import billennium.tests.mapper.QuestionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
-    private final QuizRepository quizRepository;
+    private final QuizDefinitionRepository quizDefinitionRepository;
     private final QuestionMapper questionMapper;
 
     @Override
@@ -28,8 +28,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<String> findQuiz(Long id) {
-        Quiz quiz = quizRepository.findById(id).orElseThrow(QuizException::new);
-       return quiz.getQuestions().stream()
+        QuizDefinition quizDefinition = quizDefinitionRepository.findById(id).orElseThrow(QuizException::new);
+        return quizDefinition.getQuestions().stream()
                 .map(m -> m.getText())
                 .collect(Collectors.toList());
     }

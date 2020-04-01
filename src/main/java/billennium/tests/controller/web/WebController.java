@@ -2,7 +2,7 @@ package billennium.tests.controller.web;
 
 import billennium.tests.model.QuizModel;
 import billennium.tests.service.quiz.QuizService;
-import billennium.tests.service.test.UserService;
+import billennium.tests.service.user.ExecutingQuizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 @Controller
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class WebController {
 
     private final QuizService quizService;
-    private final UserService userService;
+    private final ExecutingQuizService executingQuizService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
@@ -51,16 +52,19 @@ public class WebController {
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public String saveUser(@RequestParam String email) {
-        userService.saveUser(email);
+        executingQuizService.saveUser(email);
         return "ending";
     }
 
     @RequestMapping(value = "/quiz/play/{user_id}", method = RequestMethod.GET)
-    public String playQuiz(@PathVariable String user_id, Model model) {
-        if (userService.findUser(UUID.fromString(user_id)).isPresent()) {
-            QuizModel quiz = quizService.findAllQuiz();
+    public String playQuiz(@PathVariable String user_id, Model model, HttpSession httpSession) {
+
+        UUID userId = UUID.fromString(user_id);
+        if (executingQuizService.findUser(userId).isPresent()) {
+            QuizModel quiz = quizService.findQuiz(userId);
             model.addAttribute("quiz", quiz);
-            quizService.updateQuizStatus(Long.valueOf(quiz.getId()), user_id);
+            httpSession.setAttribute("userId", user_id);
+            quizService.updateQuizStatus(Long.valueOf(quiz.getId()), userId);
             return "playQuiz";
         }
         return "errorQuiz";

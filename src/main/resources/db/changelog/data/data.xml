@@ -6,11 +6,10 @@
       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
 
 
-    <changeSet id="addQuiz" author="artur.czajkowski" dbms="h2">
-        <insert tableName="Quiz">
+    <changeSet id="addQuizDefinistion" author="artur.czajkowski" dbms="h2">
+        <insert tableName="quiz_definition">
             <column name="id">1</column>
             <column name="title">TEST1</column>
-            <column name="quiz_status">FREE</column>
         </insert>
     </changeSet>
 
@@ -235,8 +234,6 @@
             <column name="QUESTION_ID">10</column>
             <column name="CORRECT_ANSWER">no</column>
         </insert>
-
-
     </changeSet>
 
 </databaseChangeLog>

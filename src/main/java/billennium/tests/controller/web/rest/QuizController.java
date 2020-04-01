@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -28,11 +29,6 @@ public class QuizController {
     private final QuizService quizService;
     private final QuestionService questionService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public QuizModel findTest() {
-        return quizService.findAllQuiz();
-    }
 
     @RequestMapping(value = "/{quiz_id}/questions", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -50,11 +46,11 @@ public class QuizController {
 
     @RequestMapping(value = "/{quiz_id}/submitAnswers", method = RequestMethod.POST, produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public void playQuiz(@PathVariable long quiz_id, @RequestBody List<Response> answersBundle) {
+    public void playQuiz(@PathVariable long quiz_id, @RequestBody List<Response> answersBundle, HttpSession httpSession) {
+        Object userId = httpSession.getAttribute("userId");
         QuizModel quiz = quizService.findQuizById(quiz_id);
         ResultModel resultModel = quizService.checkAnswers(quiz, answersBundle);
-        quizService.saveResult(resultModel, quiz);
+        quizService.saveResult(resultModel, quiz, userId.toString());
 
     }
-
 }

@@ -26,7 +26,7 @@ public class Question extends BaseModel {
 
     @ManyToOne
     @JsonIgnore
-    private Quiz quiz;
+    private QuizDefinition quiz;
 
     @JsonIgnore
     @OneToOne
@@ -49,11 +49,11 @@ public class Question extends BaseModel {
         this.text = text;
     }
 
-    public Quiz getQuiz() {
+    public QuizDefinition getQuiz() {
         return quiz;
     }
 
-    public void setQuiz(Quiz quiz) {
+    public void setQuiz(QuizDefinition quiz) {
         this.quiz = quiz;
     }
 

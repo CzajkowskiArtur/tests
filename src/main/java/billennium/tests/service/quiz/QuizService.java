@@ -5,18 +5,19 @@ import billennium.tests.model.QuizModel;
 import billennium.tests.model.ResultModel;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface QuizService {
 
-    QuizModel findAllQuiz();
+    QuizModel findQuiz(UUID userId);
 
-    void updateQuizStatus(Long quizId, String userId);
+    void updateQuizStatus(Long quizId, UUID userId);
 
     QuizModel findQuizById(Long id);
 
     ResultModel checkAnswers(QuizModel quiz, List<Response> answersBundle);
 
-    void saveResult(ResultModel resultModel, QuizModel quiz);
+    void saveResult(ResultModel resultModel, QuizModel quiz, String userId);
 
     QuizModel saveQuiz(String title);
 }

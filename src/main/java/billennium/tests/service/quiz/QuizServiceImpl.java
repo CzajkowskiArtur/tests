@@ -1,27 +1,29 @@
 package billennium.tests.service.quiz;
 
-import billennium.tests.entity.ResultDetails;
+import billennium.tests.entity.ExecutingQuiz;
+import billennium.tests.entity.QuizDefinition;
+import billennium.tests.entity.QuizStatus;
+import billennium.tests.entity.User;
 import billennium.tests.mapper.DetailsMapper;
 import billennium.tests.mapper.ResultMapper;
 import billennium.tests.model.Response;
-import billennium.tests.entity.Quiz;
 import billennium.tests.entity.Result;
 import billennium.tests.exception.QuizException;
 import billennium.tests.mapper.QuizMapper;
 import billennium.tests.model.QuestionModel;
 import billennium.tests.model.QuizModel;
 import billennium.tests.model.ResultModel;
-import billennium.tests.repository.quiz.QuizRepository;
-import billennium.tests.repository.result.ResultRepository;
-import billennium.tests.repository.result.details.DetailsRepository;
+import billennium.tests.repository.quiz.ExecutingQuizRepository;
+import billennium.tests.repository.quiz.QuizDefinitionRepository;
+import billennium.tests.repository.test.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -30,29 +32,31 @@ public class QuizServiceImpl implements QuizService {
 
     private static final Logger logger = LoggerFactory.getLogger(QuizServiceImpl.class);
 
-    private final QuizRepository quizRepository;
-    private final ResultRepository resultRepository;
-    private final DetailsRepository detailsRepository;
+    private final QuizDefinitionRepository quizDefinitionRepository;
+    private final ExecutingQuizRepository executingQuizRepository;
+    private final UserRepository userRepository;
     private final QuizMapper quizMapper;
     private final ResultMapper resultMapper;
     private final DetailsMapper detailsMapper;
 
 
     @Override
-    public QuizModel findAllQuiz() {
-        List<Quiz> allQuestionModel = quizRepository.findAll();
-        return quizMapper.map(new HashSet<>(allQuestionModel));
+    public QuizModel findQuiz(UUID userId) {
+        QuizDefinition quizDefinition = userRepository.getOne(userId).getExecutingQuiz().getQuiz();
+        return quizMapper.mapToQuizModel(quizDefinition);
     }
 
     @Override
     @Transactional
-    public void updateQuizStatus(Long quizId, String userId) {
-        quizRepository.changeQuizStatus(userId, quizId);
+    public void updateQuizStatus(Long quizId, UUID userId) {
+        User user = userRepository.findById(userId).get();
+        QuizDefinition quiz = quizDefinitionRepository.findById(quizId).get();
+//        user.setQuiz(quiz); //TODO cascade ALL
     }
 
     public QuizModel findQuizById(Long id) {
-        Quiz quiz = quizRepository.findById(id).orElseThrow(QuizException::new);
-        return quizMapper.mapToQuestion(quiz);
+        QuizDefinition quiz = quizDefinitionRepository.findById(id).orElseThrow(QuizException::new);
+        return quizMapper.mapToQuizModel(quiz);
     }
 
 
@@ -75,22 +79,21 @@ public class QuizServiceImpl implements QuizService {
         return questionModel.getCorrectAnswers().equals(selectedAnswer);
     }
 
-
     @Override
-    public void saveResult(ResultModel resultModel, QuizModel quiz) {
-        Result result = resultMapper.mapToResultFromResultModel(resultModel, quiz);
-        Result saveResult = resultRepository.save(result);
-        saveDetails(saveResult, resultModel, quiz);
-    }
+    @Transactional
+    public void saveResult(ResultModel resultModel, QuizModel quizModel, String userId) {
+        Result result = resultMapper.mapToResultFromResultModel(resultModel, quizModel);
+        result.setDetails(detailsMapper.mapToResultFromResultModel(resultModel));
 
-    private void saveDetails(Result saveResult, ResultModel resultModel, QuizModel quiz) {
-        List<ResultDetails> details = detailsMapper.mapToResultFromResultModel(saveResult, resultModel, quiz);
-        detailsRepository.saveAll(details);
+        ExecutingQuiz executingQuiz = userRepository.getOne(UUID.fromString(userId)).getExecutingQuiz();
+        executingQuiz.setResult(result);
+        executingQuiz.setQuizStatus(QuizStatus.DONE);
+        executingQuizRepository.save(executingQuiz);
     }
 
     @Override
     public QuizModel saveQuiz(String title) {
-        Quiz quiz = quizRepository.save(quizMapper.mapToQuiz(title));
-        return quizMapper.mapToQuestion(quiz);
+        QuizDefinition quiz = quizDefinitionRepository.save(quizMapper.mapToQuiz(title));
+        return quizMapper.mapToQuizModel(quiz);
     }
 }

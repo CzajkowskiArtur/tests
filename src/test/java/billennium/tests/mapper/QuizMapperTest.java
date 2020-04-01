@@ -1,9 +1,9 @@
 package billennium.tests.mapper;
 
 import billennium.tests.JpaRepositoryIT;
-import billennium.tests.entity.Quiz;
+import billennium.tests.entity.QuizDefinition;
 import billennium.tests.model.QuizModel;
-import billennium.tests.repository.quiz.QuizRepository;
+import billennium.tests.repository.quiz.QuizDefinitionRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,7 +18,7 @@ import java.util.List;
 public class QuizMapperTest extends JpaRepositoryIT {
 
     @Autowired
-    private QuizRepository quizRepository;
+    private QuizDefinitionRepository quizDefinitionRepository;
 
     @Autowired
     private QuizMapper sut;
@@ -27,7 +27,7 @@ public class QuizMapperTest extends JpaRepositoryIT {
     public void shouldMapToQuizModel() {
 
         //given
-        List<Quiz> quiz = quizRepository.findAll();
+        List<QuizDefinition> quiz = quizDefinitionRepository.findAll();
 
 
         //when

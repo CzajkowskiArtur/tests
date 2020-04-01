@@ -2,8 +2,7 @@ package billennium.tests.mapper;
 
 import billennium.tests.entity.Answer;
 import billennium.tests.entity.Question;
-import billennium.tests.entity.Quiz;
-import billennium.tests.entity.QuizStatus;
+import billennium.tests.entity.QuizDefinition;
 import billennium.tests.model.QuestionModel;
 import billennium.tests.model.QuizModel;
 import org.springframework.stereotype.Service;
@@ -19,20 +18,17 @@ import static java.util.Optional.ofNullable;
 @Service
 public class QuizMapper {
 
-    public QuizModel map(Set<Quiz> quiz) {
+    public QuizModel map(Set<QuizDefinition> quiz) {
         return quiz.stream()
-                .filter(f -> f.getQuizStatus() == QuizStatus.FREE)
-                .map(this::mapToQuestion)
+                .map(this::mapToQuizModel)
                 .findFirst()
                 .get();
     }
 
-    public QuizModel mapToQuestion(Quiz quiz) {
+    public QuizModel mapToQuizModel(QuizDefinition quiz) {
 
         List<QuestionModel> list = new ArrayList<>();
         Optional<List<Question>> questions = ofNullable(quiz.getQuestions());
-
-        quiz.getUserId();
 
         questions.ifPresent(f ->
                 f.forEach(question ->
@@ -49,13 +45,12 @@ public class QuizMapper {
 
         return QuizModel.builder()
                 .id(String.valueOf(quiz.getId()))
-                .userId(quiz.getUserId())
                 .questionModels(list)
                 .build();
     }
 
-    public Quiz mapToQuiz(String titleQuiz) {
-        Quiz quiz = new Quiz();
+    public QuizDefinition mapToQuiz(String titleQuiz) {
+        QuizDefinition quiz = new QuizDefinition();
         quiz.setTitle(titleQuiz);
         return quiz;
     }

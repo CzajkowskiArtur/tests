@@ -20,7 +20,7 @@ public class Answer extends BaseModel{
 
     @ManyToOne
     @JoinColumn(name="question_id")
-//    @JsonIgnore
+    @JsonIgnore
     private Question question;
 
     @org.hibernate.annotations.Type(type="true_false")

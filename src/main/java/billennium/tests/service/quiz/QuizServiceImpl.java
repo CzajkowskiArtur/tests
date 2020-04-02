@@ -51,7 +51,6 @@ public class QuizServiceImpl implements QuizService {
     public void updateQuizStatus(Long quizId, UUID userId) {
         User user = userRepository.findById(userId).get();
         QuizDefinition quiz = quizDefinitionRepository.findById(quizId).get();
-//        user.setQuiz(quiz); //TODO cascade ALL
     }
 
     public QuizModel findQuizById(Long id) {
@@ -82,12 +81,10 @@ public class QuizServiceImpl implements QuizService {
     @Override
     @Transactional
     public void saveResult(ResultModel resultModel, QuizModel quizModel, String userId) {
-        Result result = resultMapper.mapToResultFromResultModel(resultModel, quizModel);
-        result.setDetails(detailsMapper.mapToResultFromResultModel(resultModel));
-
         ExecutingQuiz executingQuiz = userRepository.getOne(UUID.fromString(userId)).getExecutingQuiz();
-        executingQuiz.setResult(result);
+        executingQuiz.setResult(resultMapper.mapToResultFromResultModel(resultModel, quizModel));
         executingQuiz.setQuizStatus(QuizStatus.DONE);
+        executingQuiz.setResultDetails(detailsMapper.mapToResultFromResultModel(resultModel, executingQuiz));
         executingQuizRepository.save(executingQuiz);
     }
 

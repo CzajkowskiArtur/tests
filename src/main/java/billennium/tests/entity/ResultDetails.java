@@ -20,7 +20,7 @@ public class ResultDetails extends BaseModel {
 
     @ManyToOne
     @JsonIgnore
-    private Result result;
+    private ExecutingQuiz executingQuiz;
 
     public String getQuestion() {
         return question;
@@ -38,11 +38,11 @@ public class ResultDetails extends BaseModel {
         this.givenAnswer = givenAnswer;
     }
 
-    public Result getResult() {
-        return result;
+    public ExecutingQuiz getExecutingQuiz() {
+        return executingQuiz;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
+    public void setExecutingQuiz(ExecutingQuiz executingQuiz) {
+        this.executingQuiz = executingQuiz;
     }
 }

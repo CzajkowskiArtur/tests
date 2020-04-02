@@ -67,7 +67,10 @@
             </column>
             <column name="asked_question" type="VARCHAR(512)"/>
             <column name="given_answer" type="VARCHAR(512)"/>
-            <column name="result_id" type="LONG">
+            <column name="executing_quiz_id" type="LONG">
+                <constraints nullable="true" />
+            </column>
+            <column name="RESULT_DETAILS_ID" type="LONG">
                 <constraints nullable="true" />
             </column>
         </createTable>

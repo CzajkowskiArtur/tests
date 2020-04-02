@@ -2,7 +2,6 @@ package billennium.tests.mapper;
 
 import billennium.tests.entity.Question;
 import billennium.tests.model.QuestionModel;
-import billennium.tests.model.QuizModel;
 import org.springframework.stereotype.Component;
 
 @Component

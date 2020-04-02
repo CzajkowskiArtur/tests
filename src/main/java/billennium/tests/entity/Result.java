@@ -1,9 +1,12 @@
 package billennium.tests.entity;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@Data
 @Entity
 @Table(name = "result")
 public class Result extends BaseModel {
@@ -13,26 +16,6 @@ public class Result extends BaseModel {
 
     @Column(name = "sum_of_correct_answers")
     private Integer correctQuestions;
-
-
-    public Integer getTotalQuestions() {
-        return totalQuestions;
-    }
-
-    public void setTotalQuestions(Integer totalQuestions) {
-        this.totalQuestions = totalQuestions;
-    }
-
-    public Integer getCorrectQuestions() {
-        return correctQuestions;
-    }
-
-    public void setCorrectQuestions(Integer correctQuestions) {
-        this.correctQuestions = correctQuestions;
-    }
-
-
-
 
 }
 

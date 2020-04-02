@@ -1,7 +1,6 @@
 package billennium.tests.mapper;
 
 import billennium.tests.entity.ExecutingQuiz;
-import billennium.tests.entity.Result;
 import billennium.tests.entity.ResultDetails;
 import billennium.tests.model.Response;
 import billennium.tests.model.ResultModel;

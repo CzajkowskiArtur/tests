@@ -1,6 +1,8 @@
 package billennium.tests.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +15,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 
+@Data
 @Entity
 @Table(name = "question")
 public class Question extends BaseModel {
@@ -31,37 +34,4 @@ public class Question extends BaseModel {
     @JsonIgnore
     @OneToOne
     private Answer correctAnswer;
-
-
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public QuizDefinition getQuiz() {
-        return quiz;
-    }
-
-    public void setQuiz(QuizDefinition quiz) {
-        this.quiz = quiz;
-    }
-
-    public Answer getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public void setCorrectAnswer(Answer correctAnswer) {
-        this.correctAnswer = correctAnswer;
-    }
 }

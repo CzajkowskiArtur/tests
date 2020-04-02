@@ -7,7 +7,6 @@ import billennium.tests.entity.User;
 import billennium.tests.mapper.DetailsMapper;
 import billennium.tests.mapper.ResultMapper;
 import billennium.tests.model.Response;
-import billennium.tests.entity.Result;
 import billennium.tests.exception.QuizException;
 import billennium.tests.mapper.QuizMapper;
 import billennium.tests.model.QuestionModel;
@@ -82,7 +81,7 @@ public class QuizServiceImpl implements QuizService {
     @Transactional
     public void saveResult(ResultModel resultModel, QuizModel quizModel, String userId) {
         ExecutingQuiz executingQuiz = userRepository.getOne(UUID.fromString(userId)).getExecutingQuiz();
-        executingQuiz.setResult(resultMapper.mapToResultFromResultModel(resultModel, quizModel));
+        executingQuiz.setResult(resultMapper.mapToResultFromResultModel(resultModel));
         executingQuiz.setQuizStatus(QuizStatus.DONE);
         executingQuiz.setResultDetails(detailsMapper.mapToResultFromResultModel(resultModel, executingQuiz));
         executingQuizRepository.save(executingQuiz);

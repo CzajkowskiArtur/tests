@@ -1,5 +1,6 @@
 package billennium.tests.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -15,6 +16,7 @@ import java.util.Calendar;
 import java.util.UUID;
 
 
+@Data
 @Entity(name = "user")
 @Table
 public class User {
@@ -39,35 +41,4 @@ public class User {
     @OneToOne(mappedBy = "userId", cascade = CascadeType.ALL)
     private ExecutingQuiz executingQuiz;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public Calendar getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Calendar createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public ExecutingQuiz getExecutingQuiz() {
-        return executingQuiz;
-    }
-
-    public void setExecutingQuiz(ExecutingQuiz executingQuiz) {
-        this.executingQuiz = executingQuiz;
-    }
 }

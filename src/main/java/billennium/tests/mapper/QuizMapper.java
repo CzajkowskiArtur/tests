@@ -5,7 +5,7 @@ import billennium.tests.entity.Question;
 import billennium.tests.entity.QuizDefinition;
 import billennium.tests.model.QuestionModel;
 import billennium.tests.model.QuizModel;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Optional.ofNullable;
 
-@Service
+@Component
 public class QuizMapper {
 
     public QuizModel map(Set<QuizDefinition> quiz) {
@@ -41,8 +41,6 @@ public class QuizMapper {
                                 .build())
                 )
         );
-
-
         return QuizModel.builder()
                 .id(String.valueOf(quiz.getId()))
                 .questionModels(list)

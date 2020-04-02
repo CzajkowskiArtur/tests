@@ -5,11 +5,10 @@ import lombok.Value;
 
 import java.util.List;
 
-@Builder(toBuilder = true)
+@Builder
 @Value
 public class QuizModel {
 
     private String id;
     private List<QuestionModel> questionModels;
-//    private UUID userId;
 }

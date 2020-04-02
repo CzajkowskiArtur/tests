@@ -1,7 +1,7 @@
 package billennium.tests.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Data
 @Entity
 @Table(name = "answer")
 public class Answer extends BaseModel{
@@ -27,29 +28,4 @@ public class Answer extends BaseModel{
     @NotNull
     private boolean correctAnswer;
 
-    public boolean isCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
-
-    @Override
-    public String toString() {
-        return "Answer [text=" + text + ", question=" + question + ", order="  + ", createdDate="
-                + "]";
-    }
 }

@@ -1,5 +1,7 @@
 package billennium.tests.entity;
 
+import lombok.Data;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -8,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "quiz_definition")
 public class QuizDefinition extends BaseModel {
@@ -21,18 +24,6 @@ public class QuizDefinition extends BaseModel {
 
     public List<Question> getQuestions() {
         return questions;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
     }
 
 }

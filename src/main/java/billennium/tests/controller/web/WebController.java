@@ -1,5 +1,8 @@
 package billennium.tests.controller.web;
 
+import billennium.tests.entity.ExecutingQuiz;
+import billennium.tests.entity.QuizStatus;
+import billennium.tests.entity.User;
 import billennium.tests.model.QuizModel;
 import billennium.tests.service.quiz.QuizService;
 import billennium.tests.service.user.ExecutingQuizService;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -60,7 +64,8 @@ public class WebController {
     public String playQuiz(@PathVariable String user_id, Model model, HttpSession httpSession) {
 
         UUID userId = UUID.fromString(user_id);
-        if (executingQuizService.findUser(userId).isPresent()) {
+        Optional<User> user = executingQuizService.findUser(userId);
+        if (user.isPresent() && user.get().getExecutingQuiz().getQuizStatus() != QuizStatus.DONE) {
             QuizModel quiz = quizService.findQuiz(userId);
             model.addAttribute("quiz", quiz);
             httpSession.setAttribute("userId", user_id);

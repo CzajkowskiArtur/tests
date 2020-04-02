@@ -1,6 +1,8 @@
 package billennium.tests.controller.web;
 
-import billennium.tests.entity.ExecutingQuiz;
+import billennium.tests.entity.ExecutingQuiz; //TODO dbaj o czystosc kodu, najlepiej miec clean unues imports w
+// intellij przy commit. Tez widze ze rozmieszczenie kodu jest jest złe, czasem dwie spacje, dwa entery itp. używaj
+// skrotu do formatowania ctrl + alt + O (nie usuwa dodatkowych enterow ale reszte tak)
 import billennium.tests.entity.QuizStatus;
 import billennium.tests.entity.User;
 import billennium.tests.model.QuizModel;

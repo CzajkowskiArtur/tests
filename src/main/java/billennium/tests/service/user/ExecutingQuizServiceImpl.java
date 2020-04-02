@@ -31,7 +31,8 @@ public class ExecutingQuizServiceImpl implements ExecutingQuizService {
         ExecutingQuiz executingQuiz = new ExecutingQuiz();
         executingQuiz.setUserId(user);
         executingQuiz.setQuizStatus(QuizStatus.READY_TO_START);
-        executingQuiz.setQuiz(quizDefinitionRepository.findAll().stream().findAny().get());
+        executingQuiz.setQuiz(quizDefinitionRepository.findAll().stream().findAny().get()); //TODO znowu optional bez
+        // sprawdzenia
         executingQuizRepository.save(executingQuiz);
     }
 
@@ -40,7 +41,7 @@ public class ExecutingQuizServiceImpl implements ExecutingQuizService {
         return userRepository.findById(userId);
     }
 
-    private List<QuizDefinition> getAllQuiz() {
+    private List<QuizDefinition> getAllQuiz() { // TODO unused method
         List<QuizDefinition> allQuizList = quizDefinitionRepository.findAll();
         return allQuizList;
     }

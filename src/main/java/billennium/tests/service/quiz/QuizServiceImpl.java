@@ -47,7 +47,8 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     @Transactional
-    public void updateQuizStatus(Long quizId, UUID userId) {
+    public void updateQuizStatus(Long quizId, UUID userId) { //TODO tutaj też lecą optionale bez sprawdzenia i
+        // przypisanie obiektów których się nie używa.
         User user = userRepository.findById(userId).get();
         QuizDefinition quiz = quizDefinitionRepository.findById(quizId).get();
     }
@@ -62,7 +63,7 @@ public class QuizServiceImpl implements QuizService {
     public ResultModel checkAnswers(QuizModel quiz, List<Response> answersBundle) {
         ResultModel results = new ResultModel(answersBundle);
 
-        for (QuestionModel questionModel : quiz.getQuestionModels()) {
+        for (QuestionModel questionModel : quiz.getQuestionModels()) { // TODO nie da sie strumieniem ?
             for (Response bundle : answersBundle) {
                 if (bundle.getQuestion().equals(questionModel.getText())) {
                     results.addAnswer(checkIsCorrectAnswer(questionModel, bundle.getSelectedAnswer()));
@@ -84,7 +85,7 @@ public class QuizServiceImpl implements QuizService {
         executingQuiz.setResult(resultMapper.mapToResultFromResultModel(resultModel));
         executingQuiz.setQuizStatus(QuizStatus.DONE);
         executingQuiz.setResultDetails(detailsMapper.mapToResultFromResultModel(resultModel, executingQuiz));
-        executingQuizRepository.save(executingQuiz);
+        executingQuizRepository.save(executingQuiz);  // TODO czy ten save jest potrzebny ?
     }
 
     @Override

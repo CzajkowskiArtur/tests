@@ -43,7 +43,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void save(QuizModel quizModel) {
+    public void save(QuizModel quizModel) { //  TODO Optional bez sprawdzenia - czy nie spowoduje że metoda może się
+        // wywalić
         questionRepository.save(questionMapper.mapToQuestion(quizModel.getQuestionModels().stream().findAny().get()));
     }
 }

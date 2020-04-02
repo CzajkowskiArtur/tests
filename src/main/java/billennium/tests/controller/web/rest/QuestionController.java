@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class QuestionController {
 
-    public static final String ROOT_MAPPING = "/api/questions";
+    public static final String ROOT_MAPPING = "/api/questions"; //TODO jestem zwolenniekiem tworzenia oddzielnej
+    // klasy abstrakcyjnej ControllerConstants gdzie bedą trzymane te static finale. Fajnie potem je sie używa w
+    // testach. Dodatkowo '/api' powinno byc dodane do resources jako root
 
     private final QuizService quizService;
     private final QuestionService questionService;

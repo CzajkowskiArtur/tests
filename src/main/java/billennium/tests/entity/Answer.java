@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
+@Data //TODO  brak konstruktora dla wszystich paramsow. Brak bezparametrowego ktory jest wymagany do tworzenia encji
 @Entity
 @Table(name = "answer")
 public class Answer extends BaseModel{
@@ -24,7 +24,8 @@ public class Answer extends BaseModel{
     @JsonIgnore
     private Question question;
 
-    @org.hibernate.annotations.Type(type="true_false")
+    @org.hibernate.annotations.Type(type="true_false") // TODO dlaczego adnotacja w taki sposob ? lepszy import niz
+    // qualified wydaje mi sie. Dlaczego correctAnswer jest primitywem ?
     @NotNull
     private boolean correctAnswer;
 

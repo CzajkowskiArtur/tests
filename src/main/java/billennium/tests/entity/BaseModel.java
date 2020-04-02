@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
+@MappedSuperclass // TODO equals i hash code z palca pisane. Widze tutaj pomysl na equals i hashCode z klasy bazowej
+// ale czy masz
+// pewnosc ze bedzie działać prawidłowo ?
 abstract class BaseModel {
 
     @Id

@@ -10,7 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Component
-public class DetailsMapper {
+public class DetailsMapper {  //TODO uwaga do wszyskich Mapperow, mam wrazenie że niektore mappery mogą być
+    // uproszczone przy użyciu ModelMapper ze springa lub innej biblioteki.
 
     public List<ResultDetails> mapToResultFromResultModel(ResultModel resultModel, ExecutingQuiz executingQuiz) {
         List<ResultDetails> details = new LinkedList<>();
